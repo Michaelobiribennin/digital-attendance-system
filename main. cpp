@@ -1,0 +1,58 @@
+#include <iostream>
+#include <vector>
+#include "Student.h"
+
+using namespace std;
+
+int main() {
+    vector<Student> students = Student::loadFromFile();
+    int choice;
+
+    do {
+        cout << "\n===== DIGITAL ATTENDANCE SYSTEM =====\n";
+        cout << "1. Register Student\n";
+        cout << "2. View Students\n";
+        cout << "3. Exit\n";
+        cout << "Enter choice: ";
+        cin >> choice;
+
+        if (choice == 1) {
+            Student s;
+            s.inputStudent();
+
+            bool exists = false;
+            for (const Student& st : students) {
+                if (st.getIndex() == s.getIndex()) {
+                    exists = true;
+                    break;
+                }
+            }
+
+            if (exists) {
+                cout << "Student with this index already exists!\n";
+            } else {
+                students.push_back(s);
+                s.saveToFile();
+                cout << "Student registered successfully!\n";
+            }
+        }
+
+        else if (choice == 2) {
+            cout << "\n--- Student List ---\n";
+            for (const Student& s : students) {
+                s.displayStudent();
+            }
+        }
+
+        else if (choice == 3) {
+            cout << "Exiting system...\n";
+        }
+
+        else {
+            cout << "Invalid choice!\n";
+        }
+
+    } while (choice != 3);
+
+    return 0;
+}
