@@ -1,0 +1,39 @@
+#include "AttendanceSession.h"
+#include <iostream>
+
+using namespace std;
+
+AttendanceSession::AttendanceSession() {}
+
+AttendanceSession::AttendanceSession(string code, string d, string time, int dur) {
+    courseCode = code;
+    date = d;
+    startTime = time;
+    duration = dur;
+}
+
+void AttendanceSession::createSession() {
+    cout << "Enter Course Code: ";
+    cin >> courseCode;
+    cout << "Enter Date (YYYY-MM-DD): ";
+    cin >> date;
+    cout << "Enter Start Time (HH:MM): ";
+    cin >> startTime;
+    cout << "Enter Duration (minutes): ";
+    cin >> duration;
+}
+
+void AttendanceSession::displaySession() const {
+    cout << "Course: " << courseCode
+         << " | Date: " << date
+         << " | Time: " << startTime
+         << " | Duration: " << duration << " mins" << endl;
+}
+
+string AttendanceSession::getCourseCode() const {
+    return courseCode;
+}
+
+string AttendanceSession::getDate() const {
+    return date;
+}
